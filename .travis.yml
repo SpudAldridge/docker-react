@@ -7,3 +7,13 @@ before_install:
 
 script:
   - docker run -e CI=true spud.aldridge/docker-react npm run test -- --coverage
+
+deploy:
+    provider: elasticbeanstalk
+    region: "us-west-2"
+    app: "docker" # name of the app
+    env: "Docker-env"
+    bucket_name: "elasticbeanstalk-us-west-2-206476627547"
+    bucket_path: "docker"
+    on:
+        branch: master
